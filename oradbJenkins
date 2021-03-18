@@ -4,7 +4,7 @@ pipeline {
             stage ('Download Required RPM') {
             steps { 
                 echo 'Download Oracle Preinstallation RPM and the Oracle Database RPM packages'
-                sh script: "sudo su - root bash -c 'curl -o oracle-database-preinstall-19c-1.0-1.el7.x86_64.rpm https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/getPackage/oracle-database-preinstall-19c-1.0-1.el8.x86_64.rpm'"
+                sh script: "sudo su - root bash -c 'curl -o /tmp/oracle-database-preinstall-19c-1.0-1.el7.x86_64.rpm https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/getPackage/oracle-database-preinstall-19c-1.0-1.el8.x86_64.rpm'"
             }
         }
 		    stage ('Install Required RPM') {
@@ -16,7 +16,8 @@ pipeline {
            stage ('Install Database Software') {
             steps { 
                 echo 'Install Oracle Oracle RDBMS software'
-                sh script: "sudo su - root bash -c 'cd /tmp; yum -y localinstall /u01/stage/oracle-database-ee-19c-1.0-1.x86_64.rpm'"
+                sh script: "sudo su - root bash -c 'curl -o /tmp/oracle-database-preinstall-19c-1.0-2.el8.x86_64.rpm https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/getPackage/oracle-database-preinstall-19c-1.0-2.el8.x86_64.rpm'"
+		sh script: "sudo su - root bash -c 'rpm -Uvh /tmp/oracle-database-ee-19c-1.0-1.x86_64.rpm'"
             }
         }
 		    stage ('Delete RPM file') {
