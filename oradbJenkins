@@ -4,7 +4,7 @@ pipeline {
             stage ('Download Required RPM') {
             steps { 
                 echo 'Download Oracle Preinstallation RPM and the Oracle Database RPM packages'
-                sh script: "sudo su - root bash -c 'curl -o oracle-database-preinstall-19c-1.0-1.el7.x86_64.rpm dnf install -y https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/getPackage/oracle-database-preinstall-19c-1.0-1.el8.x86_64.rpm'"
+                sh script: "sudo su - root bash -c 'curl -o oracle-database-preinstall-19c-1.0-1.el7.x86_64.rpm https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/getPackage/oracle-database-preinstall-19c-1.0-1.el8.x86_64.rpm'"
             }
         }
 		    stage ('Install Required RPM') {
